@@ -1,0 +1,239 @@
+html{
+    background: linear-gradient(to bottom right, #cfffb3 0%, #acffff 100%);
+    height: inherit;
+}
+
+body {
+    background-color: transparent;
+    font-family: 'Abel';
+    color: rgb(252, 247, 247);
+    height: inherit;
+}
+
+.super {
+    background: linear-gradient(to bottom right, #64f80e 0%, #18f8f8 100%);
+    color: white;
+    padding: 20px;
+    text-align:left;
+    font-family: 'Abel';
+}
+
+#navbar {
+    background-color: rgb(194, 194, 194);
+    color: green;
+    text-align: left;
+    padding-left: 0px;
+    font-family: 'Abel' sans-serif;
+    font-size: 26px;
+    font-weight: 100;
+    text-decoration: none;
+    position: sticky;
+}
+
+#navbar ul{
+    text-decoration: none;
+}
+
+#navbar li{
+    display: inline-block;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+button{
+    border-style: dashed;
+    border-width: 2px;
+    border-color: white;
+    background-color: transparent;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    color: rgb(245, 245, 245);
+    font-size: 25px;
+    padding-left: 10px;
+    font-family: 'Abel';
+    text-decoration: none;
+    background-color: white;
+}
+
+#hyp {
+    border-color: black;
+    border-style: solid 4px;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.main{
+    color: brown;
+}
+
+#button{
+    color: rgb(0, 0, 0);
+    border: 3px dashed  rgb(128, 125, 125);
+    text-align: center;
+    padding: 15px;
+    width: 340px;
+    font-family: 'Abel';
+    font-weight: 200; 
+    text-decoration: none;
+}
+
+#cool{
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'Abel';
+}
+
+#me{
+    text-align: center;
+    padding-top: 20px;
+}
+
+#man{
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+
+body, html {
+	margin: 0;
+	font-family: 'Abel';
+}
+
+a {
+	outline: none;
+}
+
+.navbar-container {
+	text-align: center;
+	background-color: #009688;
+    box-shadow: 2px 4px 3px #333333;
+	padding: 10px;
+	font-size: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.navbar-container ul {
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.navbar-container ul li {
+	display: inline-block;
+	font-size: 16px;
+}
+
+.navbar-container ul li a {
+	color: #ffffff;
+	text-decoration: none;
+	display: inline-block;	
+	padding: 10px;
+	transition: color 0.5s;
+}
+
+.navbar-container ul li .underline {
+	height: 3px;
+	background-color: transparent;
+	width: 0%;
+	transition: width 0.2s, background-color 0.5s;
+	margin: 0 auto;
+}
+
+.navbar-container ul li.active-link .underline {
+	width: 100%;
+	background-color: white;
+}
+
+.navbar-container ul li:hover .underline {
+	background-color: white;
+	width: 100%;
+}
+
+.navbar-container ul li:hover a {
+}
+
+.navbar-container ul li:active a {
+	transition: none;
+	color: rgba(255,255,255,0.76);
+}
+
+.navbar-container ul li:active .underline {
+	transition: none;
+	background-color: rgba(255,255,255,0.76);
+}
+
+
+.happen {
+    bottom: 100px;
+    padding-left: 260px;
+    margin-top: -50px;  
+  }
+  
+  div#search * {
+    font-family: sans-serif;
+    padding-left: 300px;
+    top: 100px;
+  }
+  
+  div#search {
+    align-items: center;
+    display: flex;
+    max-width: 600px;
+    width: 100%;
+    padding-top: -200px;
+  }
+  
+  div#search label {
+    display: none;
+    font-weight: 500;
+    margin: 0 5px 0 0;
+  }
+  
+  div#search input {
+    border: solid #ccc;
+    border-width: 1px 0 1px 1px;
+    border-radius: 2px 0 0 2px;
+    flex: 1;
+    font-size: 16px;
+    font-weight: 200;
+    height: 33px;
+    margin: 0;
+    min-width: 90px;
+    padding: 5px;
+    -webkit-appearance: textfield;
+  }
+  
+  div#search svg {
+    background-color: #26882e;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+    fill: white;
+    height: 33px;
+    min-width: 24px;
+    padding: 0 7px;
+    width: 24px;
+  }
+  
+  div#search svg:hover {
+    background-color: #1d6823;
+    fill: white;
+  }
+  
+  @media all and (min-width: 500px) {
+    div#search label {
+      display: inline;
+    }  
+    div#search input::placeholder {
+      opacity: 0;
+    }  
+  }

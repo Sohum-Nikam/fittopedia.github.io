@@ -1,0 +1,40 @@
+body{
+    font-family: 'Abel';
+    background-color: white;
+    padding-bottom: 20px;
+    background: linear-gradient(to bottom right, #cfffb3 0%, #acffff 100%);
+    padding-top: 20px;
+    height: 500px;
+}
+
+#main{
+    border: 4px dashed rgb(255, 215, 104);
+    border-radius: 20px;
+    height: 250px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    overflow: scroll;
+    margin-top: 20px;
+    background-color: honeydew;
+    font-family: 'Abel';
+    height: 100%;
+}
+
+.magic{
+    font-family: 'Abel';
+}
+
+@media only screen and (max-width: 300px) {
+    #main {
+        height: 100%;
+    }
+
+    div {
+        height: 100%;
+    }
+
+    .magic {
+        height: 100%;
+    }
+}

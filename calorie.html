@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>calorie</title>
+        <link href='https://fonts.googleapis.com/css?family=Abel' rel="stylesheet">
+        <style>
+            * {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #cfffb3 0%, #acffff 100%);
+  height: 100%;
+}
+
+.calc-outer-wrap {
+  margin: 0 auto;
+  background: #f3f3f3;
+  padding: 0.625rem;
+  font-size: 1rem;
+  line-height: 1.3;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  margin-top: 150px;
+  border: 2px dashed white;
+  border-radius: 20px;
+}
+
+.form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: top;
+}
+
+.field-outer {
+  width: 48%;
+}
+
+label,
+input,
+select {
+  font-size: 1rem;
+  line-height: 1.3;
+  display: block;
+}
+
+input,
+select {
+  height: 1.75rem;
+  border: 1px solid #bbb;
+  width: 100%;
+  background: #fff;
+  padding: 0 0.325rem;
+  border-radius: 0.1875rem;
+  transition: box-shadow 200ms ease-in-out;
+  box-shadow: inset 0 0 0 0 #59e7ed;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input:focus,
+select:focus {
+  outline: 0;
+  box-shadow: inset 0 -3px 0 -1px #59e7ed;
+  border-radius: 0.1875rem 0.1875rem 1px 1px;
+}
+
+select {
+  background: #fff url("data:image/svg+xml;charset=UTF-8,%3csvg width='8px' height='14px' viewBox='0 0 8 17' xmlns='http://www.w3.org/2000/svg' fill='%238A8A8A'%3e%3cpolygon fill='%238A8A8A' points='4 17 0 10 8 10'%3e%3c/polygon%3e%3cpolygon fill='%238A8A8A' points='4 0 0 7 8 7'%3e%3c/polygon%3e%3c/svg%3e") 94% center no-repeat;
+}
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+select::-ms-expand {
+  display: none;
+}
+
+.field-items {
+  display: flex;
+  justify-content: space-between;
+}
+.field-items label {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.field {
+  display: inline-block;
+  width: 32%;
+}
+.field + .field {
+  margin-left: 3px;
+}
+
+.field-large {
+  flex: 1;
+  width: 67%;
+}
+
+.field-small {
+  width: 3em;
+}
+
+.top-label {
+  font-weight: bold;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  display: block;
+}
+
+.btn-wrap {
+  align-self: flex-end;
+}
+
+.form-submit {
+  background: #59e7ed;
+  display: block;
+  border: 0;
+  width: 100%;
+  font-size: 1rem;
+  border-radius: 0.1875rem;
+  height: 1.75rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.form-submit:hover, .form-submit:focus {
+  background: #2be0e8;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
+  outline: 0;
+}
+.form-submit:active {
+  box-shadow: none;
+}
+
+#form-error {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #c1000b;
+  background-color: #ffd5d5;
+  padding: 3px;
+  font-size: 0.875rem;
+}
+
+#results {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#results p {
+  margin: 0;
+}
+#results #rs {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.875rem;
+  color: #aaa;
+}
+#results #rs:hover {
+  color: #9951FF;
+}
+
+
+.super {
+    background: linear-gradient(to bottom right, #64f80e 0%, #18f8f8 100%);
+    color: white;
+    padding: 20px;
+    text-align:left;
+}
+
+#navbar {
+    background-color:transparent;
+    color: green;
+    text-align: left;
+    padding-left: 0px;
+    font-family: 'Abel' sans-serif;
+    font-size: 26px;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+#navbar li{
+    display: inline-block;
+    padding-left: 20px;
+}
+
+body, html {
+	margin: 0;
+	font-family: 'Abel';
+}
+
+a {
+	outline: none;
+}
+
+.navbar-container {
+	text-align: center;
+	background-color: #009688;
+    box-shadow: 2px 4px 3px #333333;
+    border-top: solid #009688;
+	padding: 10px;
+	font-size: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.navbar-container ul {
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.navbar-container ul li {
+	display: inline-block;
+	font-size: 16px;
+}
+
+.navbar-container ul li a {
+	color: #ffffff;
+	text-decoration: none;
+	display: inline-block;	
+	padding: 10px;
+	transition: color 0.5s;
+}
+
+.navbar-container ul li .underline {
+	height: 3px;
+	background-color: transparent;
+	width: 0%;
+	transition: width 0.2s, background-color 0.5s;
+	margin: 0 auto;
+}
+
+.navbar-container ul li.active-link .underline {
+	width: 100%;
+	background-color: white;
+}
+
+.navbar-container ul li:hover .underline {
+	background-color: white;
+	width: 100%;
+}
+
+.navbar-container ul li:hover a {
+ 
+}
+
+.navbar-container ul li:active a {
+	transition: none;
+	color: rgba(255,255,255,0.76);
+}
+
+.navbar-container ul li:active .underline {
+	transition: none;
+	background-color: rgba(255,255,255,0.76);
+}
+
+.happen {
+  bottom: 100px;
+  padding-left: 260px;
+  margin-top: -50px;  
+}
+
+div#search * {
+  font-family: sans-serif;
+  padding-left: 300px;
+  top: 100px;
+}
+
+div#search {
+  align-items: center;
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  padding-top: -200px;
+}
+
+div#search label {
+  display: none;
+  font-weight: 500;
+  margin: 0 5px 0 0;
+}
+
+div#search input {
+  border: solid #ccc;
+  border-width: 1px 0 1px 1px;
+  border-radius: 2px 0 0 2px;
+  flex: 1;
+  font-size: 16px;
+  font-weight: 200;
+  height: 33px;
+  margin: 0;
+  min-width: 90px;
+  padding: 5px;
+  -webkit-appearance: textfield;
+}
+
+div#search svg {
+  background-color: #26882e;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+  fill: white;
+  height: 33px;
+  min-width: 24px;
+  padding: 0 7px;
+  width: 24px;
+}
+
+div#search svg:hover {
+  background-color: #1d6823;
+  fill: white;
+}
+
+@media all and (min-width: 500px) {
+  div#search label {
+    display: inline;
+  }  
+  div#search input::placeholder {
+    opacity: 0;
+  }  
+}
+
+@media only screen and (max-width: 300px) {
+    #main {
+        height: 100%;
+    }
+
+    div {
+        height: 100%;
+    }
+
+    .calc-outer-wrap {
+        height: 100%;
+    }
+
+    .form-fields{
+      margin-top: 100em;
+    }
+}
+        </style>
+    </head>
+
+    <body>
+
+      <div class="super">
+        <h1> Fittopedia </h1><!--<div id="search" class="happen">
+          <label for="search-input">Search:</label>
+          <input aria-label="Search" autocomplete="on" id="search-input" name="search-input" placeholder="Search" speech type="search">
+          <svg viewbox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+            <path d="M0 0h24v24H0z" fill="none">
+          </svg>
+        </div> -->
+    </div>
+    
+        <nav id="navbar">
+            <div class="navbar-container">
+                <ul>
+                  <li class="nav-link">
+                    <a href="fittopedia.html">Yoga
+                    </a>
+                    <div class="underline"></div>
+                  </li>
+                  <li class="nav-link">
+                    <a href="gym.html">Gymming</a>
+                    <div class="underline"></div>
+                  </li>
+                  <li class="nav-link">
+                    <a href="meditation.html">Meditation</a>
+                    <div class="underline"></div>
+                  </li>
+                  <li class="nav-link">
+                    <a href="ayurveda.html">Ayurveda</a>
+                    <div class="underline"></div>
+                  </li>
+                  <li class="nav-link">
+                    <a href="health.html">Health Issues</a>
+                    <div class="underline"></div>
+                  </li>
+                  <li class="nav-link">
+                    <a href="pedometer.html">Pedometer</a>
+                    <div class="underline"></div>
+                  </li>
+                  <li class="nav-link active-link">
+                    <a href="calorie.html">Calorie counter</a>
+                    <div class="underline"></div>
+                  </li>
+                </ul>
+            </div>
+          <script src="sohum.js"></script>
+      </nav>
+<div class="calc-outer-wrap">
+    <div id="form-error" style="display:none;"></div>
+    <form class="calc-form" id="calc-form">
+      <div class="form-fields">
+    
+        <div class="field-outer">
+          <label for="distance" class="top-label">Age:</label>
+          <div class="field-items">
+            <div class="field field-large">         
+              <input type="text" name="age" id="age" inputmode="numeric" pattern="[0-9]*">
+            </div><!--  /.field-large -->
+            
+            <div class="field field-medium">
+              <select name="gender">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                       
+              </select>
+              
+            </div><!--  /.field-small -->
+          </div><!--  /.field-items -->
+        </div><!--  /.field-outer -->
+    
+        <div class="field-outer">
+          <label for="height" class="top-label">Height:</label>
+          <div class="field-items">
+            <div class="field">
+              <input type="text" name="height_ft" id="height-ft" inputmode="numeric" pattern="[0-9]*">
+              <label for="height-ft">feet</label>
+            </div><!--  /.field -->
+            <div class="field">
+              <input type="text" name="height_in" id="height-in" inputmode="numeric" pattern="[0-9]*">
+              <label for="height-in">inches</label>
+            </div><!--  /.field -->
+           <div class="field">
+              <input type="text" name="height_cm" id="height-cm" inputmode="numeric" pattern="[0-9]*">
+              <label for="height-cm">or centimeters</label>
+            </div><!--  /.field -->        
+          </div><!--  /.field-items -->
+        </div><!--  /.field-outer -->
+    
+        <div class="field-outer">
+          <label for="weight" class="top-label">Your weight:</label>
+          <div class="field-items">
+            <div class="field field-large">
+              <input type="text" name="weight" id="weight" inputmode="numeric" pattern="[0-9]*">
+            </div><!--  /.field-large -->
+            <div class="field field-small">
+              <select name="weight_unit">
+                <option value="lb">lb</option>
+                <option value="kg">kg</option>
+              </select>
+            </div><!--  /.field-small -->
+          </div><!--  /.field-items -->
+        </div><!--  /.field-outer -->
+       <div class="btn-wrap field-outer">
+        <button class="form-submit">Calculate</button>
+      </div>
+      </div><!--  /.form fields -->
+    
+    
+    </form>
+    <div id="results" style="display:none;"></div>
+    </div><!--  /.calc-outer-wrap -->
+
+    <script>
+        (function() {
+    const form    = document.getElementById('calc-form');
+    const results = document.getElementById('results');
+    const errors  = document.getElementById('form-error');
+
+    /**
+     * Display a form validation error
+     *
+     * @param   {String}  msg  The validation message
+     * @return  {Boolen}       Returns false
+     */
+    function errorMessage(msg) {
+        errors.innerHTML = msg;
+        errors.style.display = '';
+        return false;
+    }
+
+    /**
+     * Display the calculation results
+     *
+     * @param   {Integer}  calories   The calories burned
+     * @param   {Integer}  distance   The distance run
+     * @param   {String}   unit       The distance unit (miles or kilometers)
+     * @param   {Integer}  burnRate   The calories per distance burn rate
+     * @param   {Integer}  calsPerHr  The calories burned per hour
+     */
+    function showResults(calories) {
+        results.innerHTML = `<p>Your basal metabolic rate (BMR) is: <strong>${(calories).toFixed(2)} </strong> calories a day.</p><a href="#" id="rs">revise</a>`;
+      results.style.display = ''
+      form.style.display = 'none'
+      errors.style.display = 'none'
+    }
+  
+    /**
+     * Hide the results and reset the form
+     */
+    function resetForm(e) {
+      if(e.target.id = 'rs') {
+        e.preventDefault();
+        results.style.display = 'none';
+        form.style.display = '';
+        form.reset()
+      }
+    }
+
+    /**
+     * Handle form submit
+     */
+    function submitHandler(e) {
+        e.preventDefault();
+
+        // Age
+        let age = parseFloat(form.age.value);
+        //let unit = form.distance_unit.value;
+        if(isNaN(age) || age < 0) {
+            return errorMessage('Please enter a valid age');
+        }
+   
+        // Height
+        let heightCM = parseFloat(form.height_cm.value);
+        if(isNaN(heightCM) || heightCM < 0) {
+            
+          let heightFeet = parseFloat(form.height_ft.value);
+          if(isNaN(heightFeet) || heightFeet < 0) {
+              return errorMessage('Please enter a valid Height in feet or centimeters');
+          }      
+         let heightInches = parseFloat(form.height_in.value);
+          if(isNaN(heightInches) || heightInches < 0) {
+              heightInches=0;
+          }   
+          heightCM = (2.54 * heightInches) + (30.4 * heightFeet)
+          
+        }   
+
+          let weight = parseFloat(form.weight.value);
+          if(isNaN(weight) || weight < 0) {
+              return errorMessage('Please enter a valid weight');
+          }   
+      
+        if(form.weight_unit.value == 'lb') {
+            weight = 0.453592 * weight;
+        }
+      
+       let calories = 0;
+       if(form.gender.value == 'Female') {
+          //females =  655.09 + 9.56 x (Weight in kg) + 1.84 x (Height in cm) - 4.67 x age   
+         calories = 655.09 + (9.56 * weight) + (1.84 * heightCM) - (4.67 * age);
+        }  else {
+         calories = 66.47 + (13.75 * weight) + (5 * heightCM) - (6.75 * age);
+        }
+ 
+        // Display results
+       showResults(calories);
+    }
+
+    // Add Event Listeners
+    form.addEventListener('submit', submitHandler);
+    results.addEventListener('click', resetForm, true);
+
+})();
+    </script>
+    </body>
+</html>
