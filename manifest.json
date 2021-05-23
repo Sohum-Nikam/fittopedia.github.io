@@ -1,7 +1,7 @@
 {   
-    "name": "http://www.fittopedia.me/manifest.json",
+    "name": "fittopedia",
     "short_name": "fittopedia",
-    "stat_url":".",
+    "stat_url":"https://www.fittopedia.me/",
     "background_color":"#fff",
     "theme_color":"#fff",
     "display": "standalone",
