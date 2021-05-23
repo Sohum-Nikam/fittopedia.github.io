@@ -1,21 +1,21 @@
-{   
+{
     "name": "fittopedia",
     "short_name": "fittopedia",
-    "stat_url":"https://www.fittopedia.me/",
-    "background_color":"#fff",
-    "theme_color":"#fff",
+    "start_url": "https://www.fittopedia.me/",
+    "background_color" : "white",
+    "theme_color":"white",
     "display": "standalone",
     "icons": [
         {
-            "src": "images/icon-2.png",
-            "sizes": "192*192",
-            "type": "image/png"
+            "src": "/images/icon-192.png",
+            "type": "image/png",
+            "sizes": "192*192"
         },
-
+        
         {
-            "src": "images/icon.png",
-            "sizes": "500*500",
-            "type": "image/png"
+            "src": "/images/icon-512.png",
+            "type": "image/png",
+            "sizes": "512*512"
         }
     ],
 
@@ -27,5 +27,4 @@
     }
 ]
 }
-
 
