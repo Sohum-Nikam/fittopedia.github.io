@@ -1,7 +1,7 @@
 {
     "name": "fittopedia",
     "short_name": "fittopedia",
-    "start_url": "www.fittopedia.me",
+    "start_url": ".",
     "background_color" : "white",
     "theme_color":"white",
     "display": "standalone",
