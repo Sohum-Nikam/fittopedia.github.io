@@ -1,7 +1,7 @@
 const Fittopedia = "www.Fittopedia.me"
 const assets = [
   "/",
-  "/index.html",
+  "index.html",
   "/acidity.html",
   "/allergies.html",
   "/ayurveda.html",
@@ -24,7 +24,7 @@ const assets = [
   "/mudra.html",
   "/pedometer.html",
   "/rose.html",
-  "/sitting-postures.html",
+  "sitting-postures.html",
   "/sleeping.html",
   "/standing.html",
   "/stomachache.html",
