@@ -1,61 +1,42 @@
-// sw.js
+self.importScripts('data/games.js');
 
-let cache_name = "Fittopedia"; // The string used to identify our cache
+// Files to cache
+const cacheName = 'fittopedia';
+const appShellFiles = [
+  '/pwa-examples/fittopedia/',
+  '/pwa-examples/fittopedia/index.html',
+  '/pwa-examples/fittopedia/sw.js',
+  '/pwa-examples/fittopedia/fittopedia.css',
+  '/pwa-examples/fittopedia/icons/icons-144.png',
+  '/pwa-examples/fittopedia/icons/icons-192.png',
+  '/pwa-examples/fittopedia/icons/icons-512.png',
+];
+const gamesImages = [];
+for (let i = 0; i < games.length; i++) {
+  gamesImages.push(`data/img/${games[i].slug}.jpg`);
+}
+const contentToCache = appShellFiles.concat(Images);
 
-self.addEventListener("install", event => {
-    console.log("installing...");
-    event.waitUntil(
-        caches
-            .open(cache_name)
-            .then(cache => {
-                return cache.addAll(assets);
-            })
-            .catch(err => console.log(err))
-    );
+// Installing Service Worker
+self.addEventListener('install', (e) => {
+  console.log('[Service Worker] Install');
+  e.waitUntil((async () => {
+    const cache = await caches.open(cacheName);
+    console.log('[Service Worker] Caching all: app shell and content');
+    await cache.addAll(contentToCache);
+  })());
 });
 
-
-self.addEventListener("fetch", event => {
-    if (event.request.url === "https://www.fittopedia.me/") {
-        // or whatever your app's URL is
-        event.respondWith(
-            fetch(event.request).catch(err =>
-                self.cache.open(cache_name).then(cache => cache.match("/index.html"))
-            )
-        );
-    } else {
-        event.respondWith(
-            fetch(event.request).catch(err =>
-                caches.match(event.request).then(response => response)
-            )
-        );
-    }
-});
-
-
-
-
-self.addEventListener("install", e => {
-     e.waitUntil(
-         caches.open("static").then(cache => {
-             return cache.addAll(["./", "./src/master.css", "./images/icons-192.png"]);
-        })
-      );
- });
-
- self.addEventListener("fetch", e => {
-     console.log('Intercepting fetch request for: ${e.request.url}');
- });
-
-
-
-
-// sw.js
-self.addEventListener("fetch", event => {
-    console.log("You fetched " + event.url);
-});
-
-// sw.js
-self.addEventListener("fetch", event => {
-    console.log("You fetched " + event.url);
+// Fetching content using Service Worker
+self.addEventListener('fetch', (e) => {
+  e.respondWith((async () => {
+    const r = await caches.match(e.request);
+    console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+    if (r) return r;
+    const response = await fetch(e.request);
+    const cache = await caches.open(cacheName);
+    console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+    cache.put(e.request, response.clone());
+    return response;
+  })());
 });
