@@ -1,4 +1,4 @@
-const Fittopedia = "Fittopedia"
+const Fittopedia = "www.Fittopedia.me"
 const assets = [
   "/",
   "/index.html",
