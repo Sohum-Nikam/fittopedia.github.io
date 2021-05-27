@@ -1,7 +1,7 @@
 const Fittopedia = "www.Fittopedia.me"
 const assets = [
   "/",
-  "index.html",
+  "/index.html",
   "/acidity.html",
   "/allergies.html",
   "/ayurveda.html",
