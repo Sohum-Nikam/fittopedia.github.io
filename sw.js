@@ -1,42 +1,114 @@
-self.importScripts('data/games.js');
+const Fittopedia = "Fittopedia"
+const assets = [
+  "/",
+  "/index.html",
+  "/acidity.html",
+  "/allergies.html",
+  "/ayurveda.html",
+  "/calorie.html",
+  "/cancer.html",
+  "/cold & cough.html",
+  "/conjuctivitis.html",
+  "/diabetes.html",
+  "/fittopedia.html",
+  "/flu.html",
+  "/gym-sl.html",
+  "/gym-st.html",
+  "/gym.html",
+  "/headache.html",
+  "/health.html",
+  "/heart.html",
+  "/kidney.html",
+  "/meditation.html",
+  "/mononucleolis.html",
+  "/mudra.html",
+  "/pedometer.html",
+  "/rose.html",
+  "/sitting-postures.html",
+  "/sleeping.html",
+  "/standing.html",
+  "/stomachache.html",
+  "/warm-up.html",
+  "/css/fittopedia.css",
+  "/css/acidity.css",
+  "/css/allergies.css",
+  "/css/ayur.css",
+  "/css/cancer.css",
+  "/css/cold-cough.css",
+  "/css/conjuctivitis.css",
+  "/css/diabetes.css",
+  "/css/flu.css",
+  "/css/gym.css",
+  "/css/headaches.css",
+  "/css/health.css",
+  "/css/heart.css",
+  "/css/kidney.css",
+  "/css/med.css",
+  "/css/mononuleolis.css",
+  "/css/mudras.css",
+  "/css/rose.css",
+  "/css/sitting.css",
+  "/css/sl.css",
+  "/css/sleeping.css",
+  "/css/st.css",
+  "/css/standing.css",
+  "/css/stomachache.css",
+  "/css/warmup.css",
+  "/js/sw.js",
+  "/js/sohum.js",
+  "/js/index.js",
+  "/json/manifest.json",
+  "/images/ayurveda-1.jpg",
+  "/images/ayurveda-2.jpg",
+  "/images/ayurveda-3.jpg",
+  "/images/gym-1.jpg",
+  "/images/gym-2.jpg",
+  "/images/gym-3.jpg",
+  "/images/gym-4.jpg",
+  "/images/headache.jpg",
+  "/images/health-1.jpg",
+  "/images/health-2.jpg",
+  "/images/health-3.jpg",
+  "/images/health-4.jpg",
+  "/images/icon-2.png",
+  "/images/icon.png",
+  "/images/icons-192.png",
+  "/images/icons-512.png",
+  "/images/id card.jpeg",
+  "/images/ill-1.jpg",
+  "/images/ill-2.jpg",
+  "/images/ill-3.jpg",
+  "/images/logo.png",
+  "/images/meditation-1.jpg",
+  "/images/meditation-2.jpg",
+  "/images/meditation-3.jpg",
+  "/images/yoga-1.jpg",
+  "/images/yoga-2.jpg",
+  "/images/yoga-3.jpg",
+]
 
-// Files to cache
-const cacheName = 'fittopedia';
-const appShellFiles = [
-  '/pwa-examples/fittopedia/',
-  '/pwa-examples/fittopedia/index.html',
-  '/pwa-examples/fittopedia/sw.js',
-  '/pwa-examples/fittopedia/fittopedia.css',
-  '/pwa-examples/fittopedia/icons/icons-144.png',
-  '/pwa-examples/fittopedia/icons/icons-192.png',
-  '/pwa-examples/fittopedia/icons/icons-512.png',
-];
-const gamesImages = [];
-for (let i = 0; i < games.length; i++) {
-  gamesImages.push(`data/img/${games[i].slug}.jpg`);
-}
-const contentToCache = appShellFiles.concat(Images);
+self.addEventListener("install", installEvent => {
+  installEvent.waitUntil(
+    caches.open(Fittopedia).then(cache => {
+      cache.addAll(assets)
+    })
+  )
+})
 
-// Installing Service Worker
-self.addEventListener('install', (e) => {
-  console.log('[Service Worker] Install');
-  e.waitUntil((async () => {
-    const cache = await caches.open(cacheName);
-    console.log('[Service Worker] Caching all: app shell and content');
-    await cache.addAll(contentToCache);
-  })());
-});
+self.addEventListener("fetch", fetchEvent => {
+    fetchEvent.respondWith(
+      caches.match(fetchEvent.request).then(res => {
+        return res || fetch(fetchEvent.request)
+      })
+    )
+  })
 
-// Fetching content using Service Worker
-self.addEventListener('fetch', (e) => {
-  e.respondWith((async () => {
-    const r = await caches.match(e.request);
-    console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-    if (r) return r;
-    const response = await fetch(e.request);
-    const cache = await caches.open(cacheName);
-    console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
-    cache.put(e.request, response.clone());
-    return response;
-  })());
-});
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then(res => console.log("service worker registered"))
+        .catch(err => console.log("service worker not registered", err))
+    })
+  }
+
